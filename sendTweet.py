@@ -1,16 +1,11 @@
+''' Code by Rishi Gaurav Bhatnagar, because he is lazy and he likes to tweet, FAST'''
 #!/usr/bin/env python2.7
-  
+
 import tweepy
 import sys
 
 htag = raw_input("Enter hastags: ")
-'''
-ques = raw_input("got more hastags? Y or N ?")
-if (ques =="Y"):
-	htag2 = raw_input("Enter hastag 2")
-if (ques =="N"):
 
-'''	
 #print(len(htag))
 # Consumer keys and access tokens, used for OAuth
 consumer_key = ''
