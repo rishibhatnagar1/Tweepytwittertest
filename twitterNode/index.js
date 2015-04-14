@@ -45,6 +45,7 @@ io.on('connection',function(socket){
 console.log('in socket');
 t.on('tweet', function (tweet) {
     socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text});
+	
 });
  
 t.on('error', function (err) {

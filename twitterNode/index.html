@@ -7,9 +7,12 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
 	var socket = io();
+	var totalCount = 0;
 	socket.on("tweet",function(data){
 	$("#contain").append("UserName: "+ data.Username);
 	$("#contain").append("Tweet: "+ data.Tweet);	
+	totalCount +=1;
+	// Show it on the bottom right
 	});
 	$(document).ready(function(){
 	$("#Tweet").click(function(){
