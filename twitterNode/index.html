@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" /> <meta>
+    <title>Twitter Stream</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+	var socket = io();
+	socket.on("tweet",function(data){
+	$("#contain").append("UserName: "+ data.Username);
+	$("#contain").append("Tweet: "+ data.Tweet);	
+	});
+	$(document).ready(function(){
+	$("#Tweet").click(function(){
+	$.ajax({
+	url:"http://localhost:3000/tweet?search=modi",
+	type:"GET",
+	success:dummy
+	});
+});
+});
+	function dummy(){}
+    </script>
+</head>
+
+<body>
+    <div id="contain" class="container-fluid">
+	<button id="Tweet"></button>
+    </div>
+</body>
+
+</html>
