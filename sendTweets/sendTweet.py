@@ -3,15 +3,15 @@
 
 import tweepy
 import sys
-
+import configValues
 htag = raw_input("Enter hastags: ")
 
 #print(len(htag))
 # Consumer keys and access tokens, used for OAuth
-consumer_key = ''
-consumer_secret = ''
-access_token = ''
-access_token_secret = ''
+consumer_key = configValues.Akeys['cKey']
+consumer_secret = configValues.Akeys['cSec']
+access_token = configValues.Atoken['atoken']
+access_token_secret = configValues.Atoken['aSec']
 
 # OAuth process, using the keys and tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
