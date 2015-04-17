@@ -15,7 +15,7 @@ asecret = configV.values["osec"]
 class listener(StreamListener):
 
     def on_data(self, data):
-        print data["text"]
+        print data
         return True
 
     def on_error(self, status):
