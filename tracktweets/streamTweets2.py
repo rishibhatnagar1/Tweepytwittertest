@@ -4,8 +4,8 @@ from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import configV
 import time
-
-
+import json
+from HTMLParser import HTMLParser
 ################### Keys ##################
 ckey =configV.values["ckey"] 
 csecret =configV.values["csec"]
@@ -17,14 +17,11 @@ class listener(StreamListener):
     def on_data(self, data):
         try:
 		#print data
-		''' split up the data '''
-		tweet = data.split(',"text":"')[1].split('","source')[0]
-		print tweet
-		saveThis = '' + tweet
-		saveFile = open('twitdb2.csv','a')
-		saveFile.write(saveThis)
-		saveFile.write('\n')
-		saveFile.close()
+		''' convert data into json '''
+		data = json.loads(HTMLParser().unescape(data))	
+		#tweet = data['text']
+		namee = data["user"]["screen_name"]
+		print namee
 		return True
 	except BaseException, e:
 		print 'failed on data',str(e)
