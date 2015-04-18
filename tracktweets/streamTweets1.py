@@ -35,7 +35,9 @@ class listener(StreamListener):
 
 auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
+''' Wait for the input '''
+__track = raw_input("Enter something you want to track: ")
 twitterStream = Stream(auth, listener())
 ''' Enter the string that needs to be tracked '''
-twitterStream.filter(track=[""])
+twitterStream.filter(track=[__track])
 
