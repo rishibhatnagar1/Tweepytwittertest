@@ -16,6 +16,13 @@ class listener(StreamListener):
 		try:
 			tweet = '"'+status.text+'"'+ status.user.screen_name
 			print tweet
+			''' you can get more details from the tweets here '''
+			print "From Location: ",status.user.location
+			print "Total Tweets: ",status.user.statuses_count
+			print "friends: ",status.user.friends_count
+			print "followers: ",status.user.followers_count
+			print "favourites: ",status.user.favourites_count
+			print "Created at: ",status.user.created_at
 			print '\n'
 		except BaseException, e: #Called on any exception
 			print 'failed on data',str(e)
