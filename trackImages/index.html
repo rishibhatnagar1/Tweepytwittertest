@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" /> <meta>
+    <title>Twitter Stream</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+	var socket = io();
+	socket.on("tweet",function(data){
+	/*$("#contain").append("UserName: "+ data.Username);*/
+	/*$("#contain").append("Tweet: "+ data.Tweet);*/
+	/*$("#contain").append("Retweet: "+data.retweets);*/
+	// Show it on the bottom right
+	document.getElementById("userName").innerHTML = data.Username;
+	document.getElementById("tweetText").innerHTML = data.Tweet;
+	document.getElementById("retweets").innerHTML =data.retweets; 
+	document.getElementById("profileImage").src = "" + data.imageLink ;
+	document.getElementById("mediaLink").src=""+ data.mediaLink;
+	//console.log(document.getElementById("profileImage").src);
+	});
+	
+	socket.on("count",function(data){
+	document.getElementById("tweetCount").innerHTML = data.totalTweets;
+	});
+	socket.on("tweetingPeople",function(datapeople){
+	document.getElementById("peopleCount").innerHTML= datapeople.peopleCount;
+
+	});
+
+    </script>
+</head>
+
+<body>
+    <div id="contain" class="container-fluid">
+	<img id ="profileImage" src=""></img>
+	<p>Tweet By: <a id="userName"></a></p>
+	<span><p id ="tweetText"></p></span><span><p id= "retweets"></p></span>
+	<!--<p> Total Tweets is : <a id ="tweetCount"></a></p>  -->
+	<p> Image Tweeted: <img id ="mediaLink" src=""></img></p>
+	<!--<p> Total People Tweeting: <a id ="peopleCount"></a></p> -->
+    </div>
+</body>
+
+</html>

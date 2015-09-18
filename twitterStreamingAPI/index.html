@@ -16,6 +16,7 @@
 	document.getElementById("tweetText").innerHTML = data.Tweet;
 	document.getElementById("retweets").innerHTML =data.retweets; 
 	document.getElementById("profileImage").src = "" + data.imageLink ;
+	document.getElementById("mediaLink").src=""+ data.mediaLink;
 	//console.log(document.getElementById("profileImage").src);
 	});
 	
@@ -36,6 +37,7 @@
 	<p>Tweet By: <a id="userName"></a></p>
 	<span><p id ="tweetText"></p></span><span><p id= "retweets"></p></span>
 	<p> Total Tweets is : <a id ="tweetCount"></a></p> 
+	<p> Image Tweeted: <img id ="mediaLink" src=""></img></p>
 	<!--<p> Total People Tweeting: <a id ="peopleCount"></a></p> -->
     </div>
 </body>

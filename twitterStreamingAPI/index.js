@@ -27,17 +27,6 @@ rest.getfile('/', function (err, query) {
 	} 
 })
 
-rest.get('/tweet', function (err, query) {
-        if (!err) {
-                t.track(query.search);
-                return "done";
-        }
-        else {
-                console.log(err);
-                return err;
-        }
-});
-
 var server = rest.getSocketServer();
 var io = require('socket.io')(server);
 var countTweet = 0;
@@ -47,9 +36,21 @@ console.log('in socket');
 t.on('tweet', function (tweet) {
 	 socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text,"imageLink":tweet.user.profile_image_url,"retweets":tweet.retweet_count,"instagramLink":tweet.user.screen_name});
 	countTweet +=1 ;
+	console.log(countTweet);
+
+    
 	//socket.emit('count',{"totalTweets":countTweet});
 /*	Find the total number of people tweeting */
-	console.log(tweet);
+	// console.log(tweet.entities.media.length);
+	/*
+	if (tweet.entities.media){
+	console.log((tweet.entities.media));
+	socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text,"imageLink":tweet.user.profile_image_url,"retweets":tweet.retweet_count,"mediaLink":tweet.entities.media.media_url});
+	}
+	else {
+	console.log("No media found");
+	socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text,"imageLink":tweet.user.profile_image_url,"retweets":tweet.retweet_count});
+	} */
 });
 
 t.on('error', function (err) {
