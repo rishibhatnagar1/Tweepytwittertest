@@ -40,19 +40,23 @@ rest.get('/tweet', function (err, query) {
 
 var server = rest.getSocketServer();
 var io = require('socket.io')(server);
-
+var countTweet = 0;
+var users = ["rishigb"];
 io.on('connection',function(socket){
 console.log('in socket');
 t.on('tweet', function (tweet) {
-    socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text});
-	
+	 socket.emit('tweet',{"Username":tweet.user.screen_name,"Tweet":tweet.text,"imageLink":tweet.user.profile_image_url,"retweets":tweet.retweet_count,"instagramLink":tweet.user.screen_name});
+	countTweet +=1 ;
+	//socket.emit('count',{"totalTweets":countTweet});
+/*	Find the total number of people tweeting */
+	console.log(tweet);
 });
- 
+
 t.on('error', function (err) {
   console.log('Oh no')
 });
 
-//t.track('modi');
+t.track('#pussy');
 });
 
 server.listen(3000);

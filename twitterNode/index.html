@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" /> <meta>
@@ -7,29 +7,36 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
 	var socket = io();
-	var totalCount = 0;
 	socket.on("tweet",function(data){
-	$("#contain").append("UserName: "+ data.Username);
-	$("#contain").append("Tweet: "+ data.Tweet);	
-	totalCount +=1;
+	/*$("#contain").append("UserName: "+ data.Username);*/
+	/*$("#contain").append("Tweet: "+ data.Tweet);*/
+	/*$("#contain").append("Retweet: "+data.retweets);*/
 	// Show it on the bottom right
+	document.getElementById("userName").innerHTML = data.Username;
+	document.getElementById("tweetText").innerHTML = data.Tweet;
+	document.getElementById("retweets").innerHTML =data.retweets; 
+	document.getElementById("profileImage").src = "" + data.imageLink ;
+	//console.log(document.getElementById("profileImage").src);
 	});
-	$(document).ready(function(){
-	$("#Tweet").click(function(){
-	$.ajax({
-	url:"http://localhost:3000/tweet?search=netneutrality",
-	type:"GET",
-	success:dummy
+	
+	socket.on("count",function(data){
+	document.getElementById("tweetCount").innerHTML = data.totalTweets;
 	});
-});
-});
-	function dummy(){}
+	socket.on("tweetingPeople",function(datapeople){
+	document.getElementById("peopleCount").innerHTML= datapeople.peopleCount;
+
+	});
+
     </script>
 </head>
 
 <body>
     <div id="contain" class="container-fluid">
-	<button id="Tweet"></button>
+	<img id ="profileImage" src=""></img>
+	<p>Tweet By: <a id="userName"></a></p>
+	<span><p id ="tweetText"></p></span><span><p id= "retweets"></p></span>
+	<p> Total Tweets is : <a id ="tweetCount"></a></p> 
+	<!--<p> Total People Tweeting: <a id ="peopleCount"></a></p> -->
     </div>
 </body>
 
